@@ -1,0 +1,31 @@
+repos_load:
+  - name: rhel-7-server-rpms
+    description: Red Hat Enterprise Linux 7
+    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-rpms
+    gpgcheck: false
+
+  - name: rhel-7-server-rh-common-rpms
+    description: Red Hat Enterprise Linux 7 Common
+    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-rh-common-rpms
+    gpgcheck: false
+
+  - name: rhel-7-server-extras-rpms
+    description: Red Hat Enterprise Linux 7 Extras
+    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-extras-rpms
+    gpgcheck: false
+
+  - name: rhel-7-server-optional-rpms
+    description: Red Hat Enterprise Linux 7 Optional
+    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-optional-rpms
+    gpgcheck: false
+
+  - name: rhel-7-server-rhscl-rpms
+    description: Red Hat Enterprise Linux 7 Optional
+    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-server-rhscl-7-rpms
+    gpgcheck: false
+
+  - name: epel
+    description: Extra Packages for Enterprise Linux 7 - $basearch
+    baseurl: http://download.fedoraproject.org/pub/epel/7/$basearch
+    mirrorlist: http://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+    gpgcheck: false
