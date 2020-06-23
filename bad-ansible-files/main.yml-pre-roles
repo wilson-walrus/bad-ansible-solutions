@@ -1,0 +1,97 @@
+---
+# Bad ansible! This playbook is an example of poor/bad practices!
+# Bad practices may include:
+#
+#   Poor formatting and structure
+#   Poor use of YAML - but good enough to parse
+#   Inconsistent style
+#   Incorrect use of modules
+#   Poor module choice
+#   Unclear names
+#   Hard coding / poor use of variables
+#   Roles - what are roles?
+#   Bare variables
+#   No use of handlers
+
+- name: Configure repositories on all systems
+  hosts: all
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  tasks:
+  - name: Enable three tier app repo from template
+    template:
+      src: ./open_three-tier-app.repo
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+      mode: 0644
+
+- name: Deploy haproxy to frontend system
+  hosts: frontends
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  tasks:
+  - name: Install Packages for HAproxy
+    yum:
+      name:
+        - haproxy
+        - httpie
+      state: latest
+
+  - name: Start and enable HAProxy
+    service:
+      name: haproxy
+      state: started
+
+  - name: Configure haproxy from template
+    template:
+      src: ./haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+    notify: restart_haproxy
+
+  handlers:
+  - name: restart_haproxy
+    service:
+      name: haproxy
+      state: restarted
+
+
+- name: Install and configure tomcat on apps host group
+  hosts: apps
+  gather_facts: false
+  become: true
+
+  tasks:
+  - name: install tomcat
+    yum:
+      name: tomcat
+      state: latest
+
+  - name: enable tomcat at boot
+    service:
+      name: tomcat
+      enabled: yes
+
+  - name: create ansible tomcat directory
+    file:
+      path: /usr/share/tomcat/webapps/ROOT
+      state: directory
+
+  - name: copy static index.html to tomcat webapps/ROOT/index.html
+    template:
+      src: index.html.j2
+      dest: /usr/share/tomcat/webapps/ROOT/index.html
+      mode: 0644
+
+  - name: start tomcat
+    service:
+      name: tomcat
+      state: started
+
+- name: Install postgres on appdbs host group
+  gather_facts: true
+  become: true
+  hosts: appdbs
+  tasks:
+    - include_role: 
+        name: geerlingguy.postgresql

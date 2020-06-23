@@ -1,0 +1,35 @@
+---
+- name: Configure repositories on all systems
+  hosts: all
+  gather_facts: false # remove later! speeds up testing
+  become: true
+  tasks:
+    - name: Enable three tier app repo from template
+      template:
+        src: ./open_three-tier-app.repo
+        dest: /etc/yum.repos.d/open_three-tier-app.repo
+        mode: 0644
+
+- name: Deploy haproxy.configuration role to frontends hosts
+  hosts: frontends
+  gather_facts: false 
+  become: true
+  tasks:
+    - include_role:
+        name: haproxy.configuration
+
+- name: Install and configure tomcat on apps host group
+  hosts: apps
+  gather_facts: false
+  become: true
+  tasks:
+    - include_tasks: webserver-install.yml
+    - include_tasks: webserver-configure.yml
+
+- name: Install postgres on appdbs host group
+  gather_facts: true
+  become: true
+  hosts: appdbs
+  tasks:
+    - include_role: 
+        name: geerlingguy.postgresql

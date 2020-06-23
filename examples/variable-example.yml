@@ -1,0 +1,12 @@
+---
+- name: show variables
+  hosts: localhost
+  become: false
+  gather_facts: false
+  vars:
+    GUID: 3ab0
+    user_name: "{{ GUID }}-user"
+  tasks:
+    - name: show my variable
+      debug:
+        msg: My user variable is "{{ GUID }}-user"

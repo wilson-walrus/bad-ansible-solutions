@@ -1,0 +1,11 @@
+---
+# handlers file for haproxy.configuration
+- name: start_haproxy_service
+  service:
+    name: "{{ haproxy_configuration_service  }}"
+    state: started
+
+- name: restart_haproxy_service
+  service:
+    name: "{{ haproxy_configuration_service  }}"
+    state: restarted

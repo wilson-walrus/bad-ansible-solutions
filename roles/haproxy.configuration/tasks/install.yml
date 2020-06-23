@@ -1,0 +1,6 @@
+---
+- name: Install Packages for HAproxy
+  yum:
+    name: "{{ haproxy_configuration_packages }}"    
+    state: latest
+  notify: start_haproxy_service

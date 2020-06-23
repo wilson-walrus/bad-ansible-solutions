@@ -1,0 +1,22 @@
+---
+- name: Create webserver directory
+  vars:
+    webserver_directory_path: /usr/share/tomcat/webapps/ROOT
+  file:
+    path: "{{ webserver_directory_path }}"
+    state: directory
+    recurse: true
+
+- name: Copy index.html to webserver file location
+  vars:
+    webserver_file_location: /usr/share/tomcat/webapps/ROOT/index.html
+  template:
+    src: index.html.j2
+    dest: "{{ webserver_file_location }}"
+    mode: 0644
+
+- name: Restart webserver service
+  service:
+    name: tomcat
+    state: restarted
+

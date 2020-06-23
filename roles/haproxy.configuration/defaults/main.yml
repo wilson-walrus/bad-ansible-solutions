@@ -1,0 +1,9 @@
+---
+# defaults file for haproxy.configuration
+haproxy_configuration_packages:
+  - httpie
+  - haproxy
+
+haproxy_configuration_service: haproxy
+
+
