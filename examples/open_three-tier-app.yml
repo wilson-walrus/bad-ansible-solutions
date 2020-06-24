@@ -1,27 +1,27 @@
 repos_load:
   - name: rhel-7-server-rpms
     description: Red Hat Enterprise Linux 7
-    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-rpms
+    baseurl: http://example.repo.path/repos/tower/3.6.0-1/rhel-7-server-rpms
     gpgcheck: false
 
   - name: rhel-7-server-rh-common-rpms
     description: Red Hat Enterprise Linux 7 Common
-    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-rh-common-rpms
+    baseurl: http://example.repo.path/repos/tower/3.6.0-1/rhel-7-server-rh-common-rpms
     gpgcheck: false
 
   - name: rhel-7-server-extras-rpms
     description: Red Hat Enterprise Linux 7 Extras
-    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-extras-rpms
+    baseurl: http://example.repo.path/repos/tower/3.6.0-1/rhel-7-server-extras-rpms
     gpgcheck: false
 
   - name: rhel-7-server-optional-rpms
     description: Red Hat Enterprise Linux 7 Optional
-    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-7-server-optional-rpms
+    baseurl: http://example.repo.path/repos/tower/3.6.0-1/rhel-7-server-optional-rpms
     gpgcheck: false
 
   - name: rhel-7-server-rhscl-rpms
     description: Red Hat Enterprise Linux 7 Optional
-    baseurl: http://admin.na.shared.opentlc.com/repos/tower/3.6.0-1/rhel-server-rhscl-7-rpms
+    baseurl: http://example.repo.path/repos/tower/3.6.0-1/rhel-server-rhscl-7-rpms
     gpgcheck: false
 
   - name: epel

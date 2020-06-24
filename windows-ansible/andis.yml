@@ -1,0 +1,7 @@
+---
+- name: Check ansible_distibution on windows hosts
+  hosts: windows
+  gather_facts: true
+  tasks:
+    - debug:
+        msg: My distribution is "{{ ansible_distribution }}"
