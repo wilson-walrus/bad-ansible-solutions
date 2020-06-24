@@ -1,0 +1,8 @@
+[windows:vars]
+ansible_connection=winrm 
+ansible_user=Administrator 
+ansible_winrm_server_cert_validation=ignore 
+ansible_become=true 
+ansible_become_user=administrator
+ansible_become_method=runas 
+ad_domain_name_netbios=AD1
